@@ -20,7 +20,7 @@ public class AccidentMemStore implements Store {
     }
 
     @Override
-    public <T> Collection findAll() {
+    public Collection<Accident> findAll() {
         return accidents.values();
     }
 }

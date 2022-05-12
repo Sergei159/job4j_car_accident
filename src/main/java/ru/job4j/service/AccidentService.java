@@ -1,6 +1,7 @@
 package ru.job4j.service;
 
 import org.springframework.stereotype.Service;
+import ru.job4j.model.Accident;
 import ru.job4j.repository.AccidentMemStore;
 
 import java.util.Collection;
@@ -15,7 +16,7 @@ public class AccidentService {
         this.store = store;
     }
 
-    public <T> Collection findAll() {
+    public Collection<Accident> findAll() {
         return store.findAll();
     }
 }
