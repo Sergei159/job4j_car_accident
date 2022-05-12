@@ -6,21 +6,33 @@ import ru.job4j.model.Accident;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMemStore implements Store {
 
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
 
-    public AccidentMemStore() {
-        accidents.put(1, new Accident(1, "Sergei", "Car crash", "Sovetskaja Street"));
-        accidents.put(2, new Accident(2, "Andrei", "car-bicycle crash", "Lenina Street"));
-        accidents.put(3, new Accident(3, "Max", "car-human crash", "Lenina Street"));
+    private final AtomicInteger ids = new AtomicInteger(0);
 
+    public AccidentMemStore() {
     }
 
     @Override
     public Collection<Accident> findAll() {
         return accidents.values();
+    }
+
+
+    @Override
+    public void add(Accident accident) {
+        accident.setId(ids.incrementAndGet());
+        accidents.put(ids.get(), accident);
+
+    }
+
+    @Override
+    public Accident findById(int id) {
+        return accidents.get(id);
     }
 }
