@@ -12,4 +12,8 @@ public interface Store {
     public void add(Accident accident);
 
     public <T> T findById(int id);
+
+    void update(Accident accident);
+
+    void delete(int id);
 }

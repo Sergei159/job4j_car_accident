@@ -27,4 +27,12 @@ public class AccidentService {
     public Accident findById(int id) {
         return store.findById(id);
     }
+
+    public void update(Accident accident) {
+         store.update(accident);
+    }
+
+    public void delete(int id) {
+        store.delete(id);
+    }
 }

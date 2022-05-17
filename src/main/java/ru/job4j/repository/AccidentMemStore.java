@@ -32,6 +32,17 @@ public class AccidentMemStore implements Store {
     }
 
     @Override
+    public void update(Accident accident) {
+        accidents.replace(accident.getId(), accident);
+
+    }
+
+    @Override
+    public void delete(int id) {
+        accidents.remove(id);
+    }
+
+    @Override
     public Accident findById(int id) {
         return accidents.get(id);
     }

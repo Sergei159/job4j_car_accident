@@ -9,15 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.model.Accident;
 import ru.job4j.service.AccidentService;
 
-import javax.servlet.http.HttpSession;
-
 
 @Controller
-public class IndexController {
+public class AccidentController {
 
     private final AccidentService accidentService;
 
-    public IndexController(AccidentService service) {
+    public AccidentController(AccidentService service) {
         this.accidentService = service;
     }
 
@@ -47,4 +45,24 @@ public class IndexController {
         model.addAttribute("accidents", accidentService.findAll());
         return "accidentInfo";
     }
+
+    @GetMapping("/updateAccident/{accidentId}")
+    public String updateAccident(Model model, @PathVariable("accidentId") int id) {
+        model.addAttribute("accident", accidentService.findById(id));
+        return "updateAccident";
+    }
+
+    @PostMapping("/updateAccident")
+    public String updateItem(@ModelAttribute Accident accident) {
+        Accident tempAccident = accidentService.findById(accident.getId());
+        accidentService.update(accident);
+        return "redirect:/index";
+    }
+
+    @GetMapping("/deleteAccident/{accidentId}")
+    public String deleteItem(@PathVariable("accidentId") int id) {
+        accidentService.delete(id);
+        return "redirect:/index";
+    }
+
 }

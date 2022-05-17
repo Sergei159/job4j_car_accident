@@ -32,23 +32,29 @@
             </div>
         </div>
     </nav>
-    <div class="row">
-        <div class="col">
-            <div class="shadow card">
-                <div class="card-body">
-                    <h5> Имя </h5>
-                    <p class="card-text" th:text="${accident.name}"/>
-                    <h5> Описание </h5>
-                    <p class="card-text" th:text="${accident.text}"/>
-                    <h5>Адрес</h5>
-                    <p class="card-text" th:text="${accident.address}"/>
-                    <div class="col-sm ">
-                        <a class="btn btn-outline-warning btn-sm " th:href="@{|/updateAccident/${accident.id}|}">
-                            <i class="fa fa-edit"></i> Изменить</a>
-                        <a class="btn btn-outline-danger btn-sm" th:href="@{|/deleteAccident/${accident.id}|}">
-                            <i class="fa fa-edit"></i> Удалить</a>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Редактирование инцидента
+            </div>
+            <div class="card-body">
+                <form th:action="@{/updateAccident}" method="POST" th:object="${accident}">
+                    <input type="hidden" name="id" th:field="*{id}"/>
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="text">Описание</label>
+                        <textarea type="text" class="form-control" name="text" id="text" th:field="*{text}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Адрес</label>
+                        <input type="text" class="form-control" name="address" id="address" th:field="*{address}">
+                    </div>
+
+                    <button type="submit" class="btn btn-info">Сохранить</button>
+                </form>
             </div>
         </div>
     </div>
