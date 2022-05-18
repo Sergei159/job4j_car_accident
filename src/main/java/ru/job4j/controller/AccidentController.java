@@ -54,7 +54,6 @@ public class AccidentController {
 
     @PostMapping("/updateAccident")
     public String updateItem(@ModelAttribute Accident accident) {
-        Accident tempAccident = accidentService.findById(accident.getId());
         accidentService.update(accident);
         return "redirect:/index";
     }
