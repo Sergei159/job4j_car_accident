@@ -55,7 +55,19 @@
                     <div class="form-group">
                         <label for="type.id">Категория </label>
                         <select class="form-control" id="type.id" name="type.id">
-                            <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
+                            <option th:each="type : ${types}"
+                                    th:value="${type.id}"
+                                    th:text="${type.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rIds">Статьи:</label>
+                        <select class="form-control" id="rIds" name="rIds" multiple="multiple">
+                            <option th:each="rule : ${rules}"
+                                    th:value="${rule.id}"
+                                    th:text="${rule.name}">
+                            </option>
                         </select>
                     </div>
 
