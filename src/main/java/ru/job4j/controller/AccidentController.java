@@ -2,21 +2,21 @@ package ru.job4j.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.model.Accident;
 import ru.job4j.service.AccidentService;
+import ru.job4j.service.AccidentTypeService;
 
 
 @Controller
 public class AccidentController {
 
     private final AccidentService accidentService;
+    private final AccidentTypeService accidentTypeService;
 
-    public AccidentController(AccidentService service) {
+    public AccidentController(AccidentService service, AccidentTypeService accidentTypeService) {
         this.accidentService = service;
+        this.accidentTypeService = accidentTypeService;
     }
 
 
@@ -28,12 +28,14 @@ public class AccidentController {
 
     @GetMapping("/addAccident")
     public String addAccident(Model model) {
+        model.addAttribute("types", accidentTypeService.findAll());
         return "addAccident";
     }
 
     @PostMapping("/createAccident")
-    public String saveAccident(@ModelAttribute Accident accident,
+    public String saveAccident(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
                                Model model) {
+        accident.setType(accidentTypeService.findById(id));
         accidentService.add(accident);
         model.addAttribute("accidents", accidentService.findAll());
         return "redirect:/index";
@@ -49,11 +51,13 @@ public class AccidentController {
     @GetMapping("/updateAccident/{accidentId}")
     public String updateAccident(Model model, @PathVariable("accidentId") int id) {
         model.addAttribute("accident", accidentService.findById(id));
+        model.addAttribute("types", accidentTypeService.findAll());
         return "updateAccident";
     }
 
     @PostMapping("/updateAccident")
-    public String updateItem(@ModelAttribute Accident accident) {
+    public String updateItem(@ModelAttribute Accident accident, @RequestParam("type.id") int id) {
+        accident.setType(accidentTypeService.findById(id));
         accidentService.update(accident);
         return "redirect:/index";
     }

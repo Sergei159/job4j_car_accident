@@ -42,6 +42,8 @@
                     <p class="card-text" th:text="${accident.text}"/>
                     <h5>Адрес</h5>
                     <p class="card-text" th:text="${accident.address}"/>
+                    <h5>категория</h5>
+                    <p class="card-text" th:text="${accident.type.name}"/>
                     <div class="col-sm ">
                         <a class="btn btn-outline-warning btn-sm " th:href="@{|/updateAccident/${accident.id}|}">
                             <i class="fa fa-edit"></i> Изменить</a>

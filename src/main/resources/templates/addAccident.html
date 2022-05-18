@@ -48,7 +48,13 @@
                         <label for="address">Адрес</label>
                         <input type="text" class="form-control" name="address" id="address">
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Отправить</button>
+                    <div class="form-group">
+                        <label for="type.id">Тип:</label>
+                        <select class="form-control" id="type.id" name="type.id">
+                            <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-info mt-3">Добавить</button>
                 </form>
             </div>
         </div>
