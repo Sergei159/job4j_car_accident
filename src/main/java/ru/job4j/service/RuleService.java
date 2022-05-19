@@ -2,6 +2,7 @@ package ru.job4j.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.model.Rule;
+import ru.job4j.repository.RuleHbmStore;
 import ru.job4j.repository.RuleMemStore;
 
 import java.util.Collection;
@@ -10,9 +11,9 @@ import java.util.Set;
 @Service
 public class RuleService {
 
-    private final RuleMemStore store;
+    private final RuleHbmStore store;
 
-    public RuleService(RuleMemStore store) {
+    public RuleService(RuleHbmStore store) {
         this.store = store;
     }
     public Collection<Rule> findAll() {

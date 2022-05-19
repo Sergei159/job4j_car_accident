@@ -2,10 +2,14 @@ package ru.job4j.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
-
+@Entity
+@Table(name = "rules")
 public class Rule {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
@@ -48,4 +52,6 @@ public class Rule {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }

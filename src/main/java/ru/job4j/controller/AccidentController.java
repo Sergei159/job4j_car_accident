@@ -10,6 +10,7 @@ import ru.job4j.service.AccidentTypeService;
 import ru.job4j.service.RuleService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -52,6 +53,7 @@ public class AccidentController {
         model.addAttribute("rules", rules);
         return "redirect:/index";
     }
+
 
     @GetMapping("/accidentInfo/{accidentId}")
     public String itemInfo(Model model, @PathVariable("accidentId") int id) {

@@ -2,18 +2,17 @@ package ru.job4j.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.model.Accident;
-import ru.job4j.repository.AccidentJdbcStore;
-import ru.job4j.repository.AccidentMemStore;
+import ru.job4j.repository.AccidentHbmStore;
 
 import java.util.Collection;
 
 @Service
 public class AccidentService {
 
-    private final AccidentJdbcStore store;
+    private final AccidentHbmStore store;
 
 
-    public AccidentService(AccidentJdbcStore store) {
+    public AccidentService(AccidentHbmStore store) {
         this.store = store;
     }
 
