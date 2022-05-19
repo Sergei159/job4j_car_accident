@@ -27,6 +27,9 @@ public class RuleMemStore {
     }
 
     public Set<Rule> createWithRules(String[] ids) {
+        if (ids == null) {
+            ids = new String[]{"1"};
+        }
         Set<Rule> rules = new HashSet<>();
         for (String ruleId : ids) {
             rules.add(findById(Integer.parseInt(ruleId)));

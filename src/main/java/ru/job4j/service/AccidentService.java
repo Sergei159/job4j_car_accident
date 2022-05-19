@@ -2,6 +2,7 @@ package ru.job4j.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.model.Accident;
+import ru.job4j.repository.AccidentJdbcStore;
 import ru.job4j.repository.AccidentMemStore;
 
 import java.util.Collection;
@@ -9,10 +10,10 @@ import java.util.Collection;
 @Service
 public class AccidentService {
 
-    private final AccidentMemStore store;
+    private final AccidentJdbcStore store;
 
 
-    public AccidentService(AccidentMemStore store) {
+    public AccidentService(AccidentJdbcStore store) {
         this.store = store;
     }
 
@@ -25,7 +26,7 @@ public class AccidentService {
     }
 
     public Accident findById(int id) {
-        return store.findById(id);
+        return (Accident) store.findById(id);
     }
 
     public void update(Accident accident) {

@@ -1,6 +1,5 @@
 package ru.job4j.model;
 
-
 import java.util.Objects;
 
 
@@ -8,10 +7,6 @@ public class AccidentType {
     private int id;
 
     private String name;
-
-    public AccidentType() {
-
-    }
 
     public static AccidentType of(int id, String name) {
         AccidentType type = new AccidentType();

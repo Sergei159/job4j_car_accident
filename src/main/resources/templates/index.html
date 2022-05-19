@@ -56,7 +56,10 @@
                 <td
                         th:each="rule : ${accident.rules}"
                         th:value="${rule.id}"
-                        th:text="${rule.name}"></td>
+                        th:text="${rule.name}"
+                        th:selected = "${rule.id == 1}">
+
+                </td>
                 <td>
                     <div class="col-1 col-md-4 text-left ">
                         <a class="btn btn-warning btn-sm" th:href="@{|/accidentInfo/${accident.id}|}">
