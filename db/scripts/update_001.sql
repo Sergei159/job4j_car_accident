@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS accident (
 );
 
 CREATE TABLE IF NOT EXISTS accident_rules (
-id SERIAL PRIMARY KEY,
 accident_id int references accident(id),
 rules_id int references rules(id)
 )

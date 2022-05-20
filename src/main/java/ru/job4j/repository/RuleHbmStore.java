@@ -2,9 +2,11 @@ package ru.job4j.repository;
 
 import net.jcip.annotations.ThreadSafe;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import ru.job4j.model.Rule;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,8 +23,10 @@ public class RuleHbmStore implements HbmStore {
 
 
     public List<Rule> findAll() {
-        return transaction(session -> session.createQuery("from Rule").list(),
-                sf);
+        return this.transaction(session -> {
+            final Query query = session.createQuery("from Rule ");
+            return query.getResultList();
+        }, sf);
     }
 
     public Rule findById(int id) {
@@ -39,4 +43,5 @@ public class RuleHbmStore implements HbmStore {
         }
         return rules;
     }
+
 }

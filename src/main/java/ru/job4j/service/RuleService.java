@@ -16,6 +16,7 @@ public class RuleService {
     public RuleService(RuleHbmStore store) {
         this.store = store;
     }
+
     public Collection<Rule> findAll() {
         return store.findAll();
     }
@@ -27,4 +28,5 @@ public class RuleService {
     public Set<Rule> createWithRules(String[] ids) {
         return store.createWithRules(ids);
     }
+
 }

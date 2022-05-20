@@ -42,15 +42,13 @@ public class AccidentController {
     }
 
     @PostMapping("/createAccident")
-    public String saveAccident(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
+    public String saveAccident(@ModelAttribute Accident accident, @RequestParam("type.id") int typeId,
                                Model model, HttpServletRequest req) {
         String[] rIds = req.getParameterValues("rIds");
-        Set<Rule> rules = ruleService.createWithRules(rIds);
-        accident.setRules(rules);
-        accident.setType(accidentTypeService.findById(id));
-        accidentService.add(accident);
+        accident.setType(accidentTypeService.findById(typeId));
+        accidentService.add(accident, rIds);
         model.addAttribute("accidents", accidentService.findAll());
-        model.addAttribute("rules", rules);
+        //model.addAttribute("rules", ruleService.findAll());
         return "redirect:/index";
     }
 
@@ -71,12 +69,9 @@ public class AccidentController {
     }
 
     @PostMapping("/updateAccident")
-    public String updateItem(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
-                             HttpServletRequest req) {
+    public String updateItem(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] rIds = req.getParameterValues("rIds");
-        accident.setRules(ruleService.createWithRules(rIds));
-        accident.setType(accidentTypeService.findById(id));
-        accidentService.update(accident);
+        accidentService.update(accident, rIds);
         return "redirect:/index";
     }
 
