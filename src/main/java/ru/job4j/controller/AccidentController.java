@@ -47,7 +47,7 @@ public class AccidentController {
         String[] rIds = req.getParameterValues("rIds");
         Set<Rule> rules = ruleService.createWithRules(rIds);
         accident.setRules(rules);
-        accident.setType(accidentTypeService.findById(id));
+        accident.setType(accidentTypeService.findById(id).get());
         accidentService.add(accident);
         model.addAttribute("accidents", accidentService.findAll());
         model.addAttribute("rules", rules);
@@ -75,14 +75,14 @@ public class AccidentController {
                              HttpServletRequest req) {
         String[] rIds = req.getParameterValues("rIds");
         accident.setRules(ruleService.createWithRules(rIds));
-        accident.setType(accidentTypeService.findById(id));
+        accident.setType(accidentTypeService.findById(id).get());
         accidentService.update(accident);
         return "redirect:/index";
     }
 
     @GetMapping("/deleteAccident/{accidentId}")
     public String deleteItem(@PathVariable("accidentId") int id) {
-        accidentService.delete(id);
+        accidentService.delete(accidentService.findById(id).get());
         return "redirect:/index";
     }
 

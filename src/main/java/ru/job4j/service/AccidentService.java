@@ -2,37 +2,40 @@ package ru.job4j.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.model.Accident;
-import ru.job4j.repository.AccidentHbmStore;
+import ru.job4j.repository.AccidentRepository;
 
-import java.util.Collection;
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 
 @Service
+@Transactional
 public class AccidentService {
 
-    private final AccidentHbmStore store;
+    private final AccidentRepository store;
 
 
-    public AccidentService(AccidentHbmStore store) {
+    public AccidentService(AccidentRepository store) {
         this.store = store;
     }
 
-    public Collection<Accident> findAll() {
+    public Iterable<Accident> findAll() {
         return store.findAll();
     }
 
     public void add(Accident accident) {
-        store.add(accident);
+        store.save(accident);
     }
 
-    public Accident findById(int id) {
-        return (Accident) store.findById(id);
+    public Optional<Accident> findById(int id) {
+        return store.findById(id);
     }
 
     public void update(Accident accident) {
-         store.update(accident);
+         store.save(accident);
     }
 
-    public void delete(int id) {
-        store.delete(id);
+    public void delete(Accident accident) {
+        store.delete(accident);
     }
 }

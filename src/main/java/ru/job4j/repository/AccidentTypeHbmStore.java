@@ -1,14 +1,13 @@
 package ru.job4j.repository;
 
-import net.jcip.annotations.ThreadSafe;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import ru.job4j.model.AccidentType;
 
 import java.util.List;
 
-@ThreadSafe
-@Repository
+//
+//@Repository
 public class AccidentTypeHbmStore implements HbmStore {
     private final SessionFactory sf;
 

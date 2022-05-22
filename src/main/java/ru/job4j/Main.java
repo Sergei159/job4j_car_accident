@@ -1,52 +1,19 @@
 package ru.job4j;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import javax.sql.DataSource;
-import java.util.Properties;
 
-@PropertySource("classpath:app.properties")
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+//@ComponentScan({"ru.job4j", "ru.job4j.config"})
+//@EnableMongoRepositories("ru.job4j.repository")
+@ComponentScan(basePackages = {"ru.job4j.repository"})
+//@EnableAutoConfiguration
 public class Main {
-    @Bean
-    public DataSource ds(@Value("${jdbc.driver}") String driver,
-                         @Value("${jdbc.url}") String url,
-                         @Value("${jdbc.username}") String username,
-                         @Value("${jdbc.password}") String password) {
-        BasicDataSource ds = new BasicDataSource();
-        ds.setDriverClassName(driver);
-        ds.setUrl(url);
-        ds.setUsername(username);
-        ds.setPassword(password);
-        return ds;
-    }
-    @Bean
-    public JdbcTemplate jdbc(DataSource ds) {
-        return new JdbcTemplate(ds);
-    }
-
-    @Bean
-    public SessionFactory initSessionFactory() {
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure().build();
-        return new MetadataSources(registry)
-                .buildMetadata().buildSessionFactory();
-    }
 
 
     public static void main(String[] args) {
