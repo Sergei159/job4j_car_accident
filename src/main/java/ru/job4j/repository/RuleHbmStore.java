@@ -1,6 +1,6 @@
 package ru.job4j.repository;
 
-import net.jcip.annotations.ThreadSafe;
+
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import ru.job4j.model.Rule;
@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@ThreadSafe
 @Repository
 public class RuleHbmStore implements HbmStore {
 

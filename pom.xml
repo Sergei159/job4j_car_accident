@@ -14,7 +14,7 @@
   <groupId>groupId</groupId>
   <artifactId>job4j_car_accident</artifactId>
   <version>1.0</version>
-  <name>Job4j Car accident  </name>
+  <name>Job4j Car accident </name>
 
   <properties>
     <maven.compiler.source>15</maven.compiler.source>
@@ -114,6 +114,24 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
       <version>5.3.20</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>5.7.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>5.7.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>5.7.0</version>
     </dependency>
   </dependencies>
 

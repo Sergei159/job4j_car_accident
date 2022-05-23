@@ -13,7 +13,7 @@ public class AccidentHbmStore implements HbmStore {
 
     private final SessionFactory sf;
 
-    public AccidentHbmStore  (SessionFactory sf) {
+    public AccidentHbmStore(SessionFactory sf) {
         this.sf = sf;
     }
 
