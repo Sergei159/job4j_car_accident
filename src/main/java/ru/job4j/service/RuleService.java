@@ -1,21 +1,23 @@
 package ru.job4j.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.model.Rule;
-import ru.job4j.repository.RuleHbmStore;
-import ru.job4j.repository.RuleMemStore;
+import ru.job4j.repository.RuleRepository;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class RuleService {
 
-    private final RuleHbmStore store;
+    private final RuleRepository store;
 
-    public RuleService(RuleHbmStore store) {
+    public RuleService(RuleRepository store) {
         this.store = store;
     }
+
     public Collection<Rule> findAll() {
         return store.findAll();
     }
@@ -25,6 +27,14 @@ public class RuleService {
     }
 
     public Set<Rule> createWithRules(String[] ids) {
-        return store.createWithRules(ids);
+        if (ids == null) {
+            ids = new String[]{"1"};
+        }
+        Set<Rule> rules = new HashSet<>();
+        for (String ruleId : ids) {
+            rules.add(findById(Integer.parseInt(ruleId)));
+        }
+        return rules;
     }
+
 }
