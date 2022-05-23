@@ -29,6 +29,10 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link " th:href="@{/index}">Главная <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" th:href="@{/addAccident}">Добавить</a>
+                <a class="nav-item nav-link" th:href="@{/logout}">
+                    <span th:text="${user.Username}"></span>
+                    <span> | Выйти</span>
+                </a>
             </div>
         </div>
     </nav>

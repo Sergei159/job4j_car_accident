@@ -1,5 +1,6 @@
 package ru.job4j.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,6 @@ import ru.job4j.service.AccidentTypeService;
 import ru.job4j.service.RuleService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -30,12 +30,14 @@ public class AccidentController {
 
     @GetMapping("/index")
     public String index(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("accidents", accidentService.findAll());
         return "index";
     }
 
     @GetMapping("/addAccident")
     public String addAccident(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("types", accidentTypeService.findAll());
         model.addAttribute("rules", ruleService.findAll());
         return "addAccident";
@@ -57,6 +59,7 @@ public class AccidentController {
 
     @GetMapping("/accidentInfo/{accidentId}")
     public String itemInfo(Model model, @PathVariable("accidentId") int id) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("accident", accidentService.findById(id));
         model.addAttribute("accidents", accidentService.findAll());
         return "accidentInfo";
@@ -64,6 +67,7 @@ public class AccidentController {
 
     @GetMapping("/updateAccident/{accidentId}")
     public String updateAccident(Model model, @PathVariable("accidentId") int id) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("accident", accidentService.findById(id));
         model.addAttribute("types", accidentTypeService.findAll());
         model.addAttribute("rules", ruleService.findAll());
