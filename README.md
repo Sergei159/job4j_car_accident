@@ -1,11 +1,21 @@
 # job4j_car_accident
 
-В системе существуют две роли. Обычные пользователи и автоинспекторы.
+## Description
+This project is the car accident message board;
 
-Пользователь добавляет описание автонарушение.
+### Used technologies:
+1. Spring Web
+2. Spring Security
+3. Hibernate
+4. PostgreSQL
+5. Thymeleaf
 
-В заявлении указывает: адрес, номер машины, описание нарушения и фотографию нарушения.
-
-У заявки есть статус. Принята. Отклонена. Завершена.
-
-Вид системы. Главная страница - это поиск с таблицей.
+### Functionality:
+Login page
+![ScreenShot](images/1.JPG)
+Main page
+![ScreenShot](images/2.JPG)
+Adding new post
+![ScreenShot](images/3.JPG)
+Edit post
+![ScreenShot](images/4.JPG)
